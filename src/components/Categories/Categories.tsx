@@ -1,38 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useMemo } from 'react';
 import './Categories.scss';
 import { useAppSelector } from '../../app/hooks';
-import { getAccessories, getTablets } from '../../api/api';
-import { Product } from '../../types/Product';
 import { Category } from '../Category';
 import { categoryImages } from '../../helpers/constants';
+import { getNumberForCategoty } from '../../helpers/getNumberForCategoty';
 
 export const Categories = () => {
-  const { phones } = useAppSelector(state => state.phones);
-  const [tablets, setTablets] = useState<Product[]>([]);
-  const [accessoroies, setAccessoroies] = useState<Product[]>([]);
+  const { products } = useAppSelector(state => state.products);
 
-  // just to have correct numbers (without creating of new slicers)
-  const otherProducts = async () => {
-    try {
-      const tabletsFromServer: Product[] = await getTablets();
-      const accessFromServer: Product[] = await getAccessories();
-
-      setTablets(tabletsFromServer);
-      setAccessoroies(accessFromServer);
-    } catch (error) {
-      throw new Error('error');
-    }
-  };
-
-  useEffect(() => {
-    otherProducts();
-  }, []);
-
-  const modelsAmount = [
-    phones.length,
-    tablets.length,
-    accessoroies.length,
-  ];
+  const modelsAmount = useMemo(() => {
+    return getNumberForCategoty(products);
+  }, [products]);
 
   return (
     <div className="categories">

@@ -5,8 +5,7 @@ import './ProductInfo.scss';
 import { BASE_URL } from '../../api/api';
 import { ProductInfo as ProductInfoType } from '../../types/ProductInfo';
 import { ActionsBlock } from '../ActionsBlock';
-import { getLinkFromRAM } from '../../helpers/getLinkFromRAM';
-import { getLinkFromColor } from '../../helpers/getLinkFromColor';
+import { getLink } from '../../helpers/getLink';
 import { Product } from '../../types/Product';
 
 type Props = {
@@ -22,9 +21,11 @@ export const ProductInfo: React.FC<Props> = ({ product, productSelected }) => {
     setSelectedImg(`${BASE_URL}/${product?.images[0]}`);
   }, [product]);
 
+  const category = pathname.slice(1).split('/')[0];
+
   const {
-    id,
     name,
+    namespaceId,
     images,
     colorsAvailable,
     color: colorInPr,
@@ -50,6 +51,13 @@ export const ProductInfo: React.FC<Props> = ({ product, productSelected }) => {
     return `${BASE_URL}/${str}`;
   };
 
+  // in case in API we could have smth like 'space-gray', 'space gray' and 'spacegray'
+  const normalizedColor = (color: string) => {
+    return color
+      .split(' ').join('')
+      .split('-').join('');
+  };
+
   const characteristics = [
     ['Screen', screen],
     ['Resolution', resolution],
@@ -57,7 +65,7 @@ export const ProductInfo: React.FC<Props> = ({ product, productSelected }) => {
     ['RAM', ram],
   ];
 
-  const techSpecs = [
+  const techSpecsAll = [
     ['Screen', screen],
     ['Resolution', resolution],
     ['Processor', processor],
@@ -67,6 +75,10 @@ export const ProductInfo: React.FC<Props> = ({ product, productSelected }) => {
     ['Zoom', zoom],
     ['Cell', cell.join(', ')],
   ];
+
+  const techSpecs = category === 'accessories'
+    ? techSpecsAll.filter(([key]) => key !== 'Camera' && key !== 'Zoom')
+    : techSpecsAll;
 
   return (
     <div className="product-info">
@@ -116,7 +128,9 @@ export const ProductInfo: React.FC<Props> = ({ product, productSelected }) => {
                 <div className="product-info__color-container">
                   {colorsAvailable.map(color => (
                     <Link
-                      to={getLinkFromColor(id, color, pathname)}
+                      to={
+                        getLink(color, category, namespaceId, capacity)
+                      }
                       key={color}
                       title={color}
                       replace
@@ -130,7 +144,7 @@ export const ProductInfo: React.FC<Props> = ({ product, productSelected }) => {
                         <button
                           style={{ backgroundColor: color }}
                           className={cn('product-info__color',
-                            `product-info__color--${color}`)}
+                            `product-info__color--${normalizedColor(color)}`)}
                           aria-label="change-color"
                           type="button"
                         />
@@ -148,7 +162,7 @@ export const ProductInfo: React.FC<Props> = ({ product, productSelected }) => {
                 <div className="product-info__capacity-container">
                   {capacityAvailable.map(cap => (
                     <Link
-                      to={getLinkFromRAM(id, cap, pathname)}
+                      to={getLink(colorInPr, category, namespaceId, cap)}
                       key={cap}
                       replace
                     >

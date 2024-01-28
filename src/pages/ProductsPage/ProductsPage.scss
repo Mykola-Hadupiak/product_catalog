@@ -1,0 +1,9 @@
+@import "../../styles/main";
+
+.products-page {
+  &--loading {
+    @include flex-center;
+
+    height: 100%;
+  }
+}

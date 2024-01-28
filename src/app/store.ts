@@ -3,12 +3,12 @@ import {
   ThunkAction,
   Action,
 } from '@reduxjs/toolkit';
-import productSlice from '../features/product/productSlice';
+import productSlice from '../features/product/productsSlice';
 import productInfoSlice from '../features/productInfo/productInfoSlice';
 
 export const store = configureStore({
   reducer: {
-    phones: productSlice,
+    products: productSlice,
     product: productInfoSlice,
   },
 });

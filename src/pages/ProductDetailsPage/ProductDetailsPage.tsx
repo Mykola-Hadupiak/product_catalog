@@ -1,4 +1,5 @@
 import {
+  useLocation,
   useNavigate,
   useParams,
 } from 'react-router-dom';
@@ -17,17 +18,19 @@ import { Breadcrumb } from '../../components/Breadcrumb';
 import { Loader } from '../../components/Loader';
 import { PageNotFound } from '../PageNotFound';
 import { getRandomProducts } from '../../api/api';
-import { thunkGetPhones } from '../../features/product/productSlice';
+import { thunkGetProducts } from '../../features/product/productsSlice';
 import { ProductSlider } from '../../components/ProductSlider';
 import { ProductInfo } from '../../components/ProductInfo';
 import { SomethingWentWrong } from '../../components/SomethingWentWrong';
 
 export const ProductDetailsPage = () => {
+  const { pathname } = useLocation();
   const navigate = useNavigate();
   const { itemId } = useParams();
   const dispatch = useAppDispatch();
   const { product, loading, error } = useAppSelector(state => state.product);
-  const { phones } = useAppSelector(state => state.phones);
+  const { products } = useAppSelector(state => state.products);
+  const normalizedPath = pathname.slice(1).split('/')[0];
 
   const goBack = () => {
     navigate(-1);
@@ -35,10 +38,10 @@ export const ProductDetailsPage = () => {
 
   const loadProduct = useCallback(() => {
     if (itemId) {
-      dispatch(thunkGetProduct(itemId));
-      dispatch(thunkGetPhones());
+      dispatch(thunkGetProduct({ id: itemId, name: normalizedPath }));
+      dispatch(thunkGetProducts());
     }
-  }, [dispatch, itemId]);
+  }, [dispatch, itemId, normalizedPath]);
 
   useEffect(() => {
     loadProduct();
@@ -49,8 +52,8 @@ export const ProductDetailsPage = () => {
   }, [dispatch, loadProduct]);
 
   const youMayAlsoLike = useMemo(() => {
-    return getRandomProducts(phones);
-  }, [phones]);
+    return getRandomProducts(products);
+  }, [products]);
 
   if (loading && !error) {
     return (
@@ -72,7 +75,7 @@ export const ProductDetailsPage = () => {
     );
   }
 
-  const productSelected = phones.find(phone => phone.itemId === product.id);
+  const productSelected = products.find(pr => pr.itemId === product.id);
 
   if (!productSelected) {
     return (

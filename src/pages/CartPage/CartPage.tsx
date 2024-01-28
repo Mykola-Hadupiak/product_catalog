@@ -3,14 +3,14 @@ import { useMemo } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import './CartPage.scss';
 import { Card } from '../../components/Card';
-import { clearCart } from '../../features/product/productSlice';
+import { clearCart } from '../../features/product/productsSlice';
 import { Empty } from '../../components/Empty';
 import { getUniqueObjects } from '../../helpers/getUniqueObjects';
 import { cartPageImage } from '../../helpers/constants';
 import { Checkout } from '../../components/Checkout';
 
 export const CartPage = () => {
-  const { cart } = useAppSelector(state => state.phones);
+  const { cart } = useAppSelector(state => state.products);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 

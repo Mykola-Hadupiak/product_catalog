@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './Selector.scss';
-import { useSearchParams } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 import cn from 'classnames';
 import { getSearchWith } from '../../helpers/searchHelper';
 
@@ -15,6 +15,7 @@ export const Selector = <T extends Record<string, string>>({
   searchParam,
   values,
 }: Props<T>) => {
+  const { pathname } = useLocation();
   const [isActive, setIsActive] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const [defValue, setDefValue] = useState(values[defaultValue]);
@@ -27,6 +28,10 @@ export const Selector = <T extends Record<string, string>>({
 
     setIsActive(false);
   };
+
+  useEffect(() => {
+    return setDefValue(values[defaultValue]);
+  }, [defaultValue, pathname, values]);
 
   return (
     <div

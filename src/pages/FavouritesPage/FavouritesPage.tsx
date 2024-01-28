@@ -8,7 +8,7 @@ import { Breadcrumb } from '../../components/Breadcrumb';
 import { favouritesPageImage } from '../../helpers/constants';
 
 export const FavouritesPage = () => {
-  const { favourites, search } = useAppSelector(state => state.phones);
+  const { favourites, search } = useAppSelector(state => state.products);
 
   const productsToRender = useMemo(() => {
     return favourites

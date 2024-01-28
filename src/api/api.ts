@@ -3,10 +3,10 @@ import { client } from '../helpers/fetchProduct';
 import { Product } from '../types/Product';
 import { ProductInfo } from '../types/ProductInfo';
 /* eslint-disable max-len */
-export const BASE_URL = 'https://mate-academy.github.io/react_phone-catalog/_new';
+export const BASE_URL = 'https://mate-academy.github.io/product_catalog/public';
 
 export const getProducts = () => {
-  return client.get<Product[]>('/products.json');
+  return client.get<Product[]>('/api/products.json');
 };
 
 export const getPhones = async () => {
@@ -27,23 +27,25 @@ export const getAccessories = async () => {
       .filter(product => product.category === 'accessories'));
 };
 
-export const getHotPriceProducts = (phones: Product[]) => {
-  return [...phones]
-    .sort((phone1, phone2) => ((1 - (phone1.fullPrice / phone1.price)) * 100)
-      - (1 - (phone2.fullPrice / phone2.price)) * 100).slice(0, 16);
+export const getHotPriceProducts = (pcoducts: Product[]) => {
+  return [...pcoducts]
+    .sort((pr1, pr2) => ((1 - (pr1.fullPrice / pr1.price)) * 100)
+      - (1 - (pr2.fullPrice / pr2.price)) * 100).slice(0, 16);
 };
 
-export const getBrandNewProducts = (phones: Product[]) => {
-  return [...phones]
-    .sort((phone1, phone2) => phone2.price - phone1.price).slice(0, 16);
+export const getBrandNewProducts = (products: Product[]) => {
+  return [...products]
+    .sort((pr1, pr2) => pr2.price - pr1.price).slice(0, 16);
 };
 
-export const getProduct = (name: string) => {
-  return client.get<ProductInfo>(`/products/${name}.json`);
+export const getProductsInfo = (id: string, category: string) => {
+  return client
+    .get<ProductInfo[]>(`/api/${category}.json`)
+    .then(products => products.find(product => product.id === id));
 };
 
-export function getRandomProducts(phones: Product[]) {
-  const copy = [...phones];
+export function getRandomProducts(products: Product[]) {
+  const copy = [...products];
   const randomizerArr = [];
 
   while (copy.length > 0) {

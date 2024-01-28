@@ -4,16 +4,16 @@ import { Carousel } from '../../components/Carousel';
 import { ProductSlider } from '../../components/ProductSlider';
 import { Categories } from '../../components/Categories';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { thunkGetPhones } from '../../features/product/productSlice';
+import { thunkGetProducts } from '../../features/product/productsSlice';
 import { getBrandNewProducts, getHotPriceProducts } from '../../api/api';
 import { Loader } from '../../components/Loader';
 
 export const HomePage: React.FC = () => {
   const dispatch = useAppDispatch();
-  const { phones, loading, error } = useAppSelector(state => state.phones);
+  const { products, loading, error } = useAppSelector(state => state.products);
 
   const loadPhones = useCallback(() => {
-    dispatch(thunkGetPhones());
+    dispatch(thunkGetProducts());
   }, [dispatch]);
 
   useEffect(() => {
@@ -21,12 +21,12 @@ export const HomePage: React.FC = () => {
   }, [loadPhones]);
 
   const hotPrices = useMemo(() => {
-    return getHotPriceProducts(phones);
-  }, [phones]);
+    return getHotPriceProducts(products);
+  }, [products]);
 
   const brandNew = useMemo(() => {
-    return getBrandNewProducts(phones);
-  }, [phones]);
+    return getBrandNewProducts(products);
+  }, [products]);
 
   return (
     <div className="home-page">
@@ -38,7 +38,7 @@ export const HomePage: React.FC = () => {
         </div>
       )}
 
-      {!loading && !error && phones && (
+      {!loading && !error && products && (
         <section className="hot-prices">
           <ProductSlider title="Hot prices" products={hotPrices} />
         </section>
@@ -54,7 +54,7 @@ export const HomePage: React.FC = () => {
         </div>
       )}
 
-      {!loading && !error && phones && (
+      {!loading && !error && products && (
         <section className="brand-new-models">
           <ProductSlider title="Brand new models" products={brandNew} />
         </section>

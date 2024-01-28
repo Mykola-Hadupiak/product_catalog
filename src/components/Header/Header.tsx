@@ -10,7 +10,7 @@ import debounce from 'lodash.debounce';
 import cn from 'classnames';
 import { Navigation } from '../Navigation';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { addSearch, removeSearch } from '../../features/product/productSlice';
+import { addSearch, removeSearch } from '../../features/product/productsSlice';
 import { getSearchWith } from '../../helpers/searchHelper';
 import { categoriesPath, categoriesWithInput } from '../../helpers/constants';
 import { Logo } from '../Logo';
@@ -20,14 +20,14 @@ export const Header = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isFavVisible, setIsFavVisible] = useState(true);
   const [query, setQuery] = useState('');
-  const { favourites, cart } = useAppSelector(state => state.phones);
+  const { favourites, cart } = useAppSelector(state => state.products);
   const dispatch = useAppDispatch();
   const { pathname } = useLocation();
   const normalizedPath = pathname.slice(1);
 
   useEffect(() => {
     setQuery(searchParams.get('query') || '');
-  }, []);
+  }, [searchParams]);
 
   useEffect(() => {
     setIsVisible(categoriesWithInput.includes(normalizedPath));

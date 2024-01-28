@@ -7,7 +7,7 @@ import {
   addToFavourites,
   removeFavourite,
   removeFromCart,
-} from '../../features/product/productSlice';
+} from '../../features/product/productsSlice';
 import { Product } from '../../types/Product';
 
 type Props = {
@@ -27,7 +27,7 @@ export const ActionsBlock: React.FC<Props> = ({ product, paddingFav }) => {
   const {
     cart,
     favourites,
-  } = useAppSelector(state => state.phones);
+  } = useAppSelector(state => state.products);
 
   const handleAdd = (key: string) => {
     const valid = key === 'cart' ? cart : favourites;

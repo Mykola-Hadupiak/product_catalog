@@ -9,7 +9,7 @@ import {
   addToCart,
   removeFromCart,
   removeProduct,
-} from '../../features/product/productSlice';
+} from '../../features/product/productsSlice';
 
 type Props = {
   card: Product;
@@ -17,7 +17,7 @@ type Props = {
 
 export const Card: React.FC<Props> = ({ card }) => {
   const dispatch = useAppDispatch();
-  const { cart } = useAppSelector(state => state.phones);
+  const { cart } = useAppSelector(state => state.products);
 
   const {
     id,

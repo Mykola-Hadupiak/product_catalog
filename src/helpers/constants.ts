@@ -1,7 +1,9 @@
 /* eslint-disable global-require */
 export const navLinks = ['', 'phones', 'tablets', 'accessories'];
 
-export const categoriesWithInput = ['phones', 'favourites'];
+export const categoriesWithInput = [
+  'phones', 'tablets', 'accessories', 'favourites',
+];
 
 export const categoriesPath = ['phones', 'tablets', 'accessories'];
 

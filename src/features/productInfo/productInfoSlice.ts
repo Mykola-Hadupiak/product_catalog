@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
-import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getProduct } from '../../api/api';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { getProductsInfo } from '../../api/api';
 import { ProductInfo } from '../../types/ProductInfo';
 
 export interface ProductInfoState {
@@ -16,8 +16,17 @@ const initialState: ProductInfoState = {
 };
 
 export const thunkGetProduct = createAsyncThunk(
-  'product/fetchProduct', (id: string) => {
-    return getProduct(id);
+  'product/fetchProduct', async (
+    { id, name }: { id: string, name: string },
+    { rejectWithValue },
+  ) => {
+    try {
+      const productInfo = await getProductsInfo(id, name);
+
+      return productInfo;
+    } catch (error) {
+      return rejectWithValue('Failed to fetch product');
+    }
   },
 );
 
@@ -36,8 +45,8 @@ const productInfoSlice = createSlice({
         state.error = false;
       })
       .addCase(thunkGetProduct.fulfilled,
-        (state, action: PayloadAction<ProductInfo>) => {
-          state.product = action.payload;
+        (state, action) => {
+          state.product = action.payload || null;
           state.loading = false;
         })
       .addCase(thunkGetProduct.rejected, (state) => {

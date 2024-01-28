@@ -1,11 +1,11 @@
 /* eslint-disable no-param-reassign */
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getPhones } from '../../api/api';
+import { getProducts } from '../../api/api';
 import { Product } from '../../types/Product';
 
-export interface ProductState {
-  phones: Product[];
-  product: Product | null;
+export interface ProductsState {
+  products: Product[];
+  // product: Product | null;
   favourites: Product[];
   cart: Product[];
   search: string,
@@ -13,9 +13,9 @@ export interface ProductState {
   loading: boolean,
 }
 
-const initialState: ProductState = {
-  phones: [],
-  product: null,
+const initialState: ProductsState = {
+  products: [],
+  // product: null,
   favourites: JSON.parse(localStorage.getItem('favourites') || '[]'),
   cart: JSON.parse(localStorage.getItem('cart') || '[]'),
   search: '',
@@ -23,22 +23,22 @@ const initialState: ProductState = {
   loading: false,
 };
 
-export const thunkGetPhones = createAsyncThunk(
-  'phones/fetchPhones', () => {
-    return getPhones();
+export const thunkGetProducts = createAsyncThunk(
+  'products/fetchProducts', () => {
+    return getProducts();
   },
 );
 
-const phonesSlice = createSlice({
-  name: 'phones',
+const productsSlice = createSlice({
+  name: 'products',
   initialState,
   reducers: {
-    setProduct: (state, action: PayloadAction<Product>) => {
-      state.product = action.payload;
-    },
-    setProductNull: (state) => {
-      state.product = null;
-    },
+    // setProduct: (state, action: PayloadAction<Product>) => {
+    //   state.product = action.payload;
+    // },
+    // setProductNull: (state) => {
+    //   state.product = null;
+    // },
     addToFavourites: (state, action: PayloadAction<Product>) => {
       state.favourites.push(action.payload);
     },
@@ -73,24 +73,24 @@ const phonesSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(thunkGetPhones.pending, (state) => {
+      .addCase(thunkGetProducts.pending, (state) => {
         state.loading = true;
         state.error = false;
       })
-      .addCase(thunkGetPhones.fulfilled,
+      .addCase(thunkGetProducts.fulfilled,
         (state, action: PayloadAction<Product[]>) => {
-          state.phones = action.payload;
+          state.products = action.payload;
           state.loading = false;
         })
-      .addCase(thunkGetPhones.rejected, (state) => {
+      .addCase(thunkGetProducts.rejected, (state) => {
         state.error = true;
       });
   },
 });
 
 export const {
-  setProduct,
-  setProductNull,
+  // setProduct,
+  // setProductNull,
   addToFavourites,
   removeFavourite,
   addToCart,
@@ -99,6 +99,6 @@ export const {
   removeSearch,
   clearCart,
   removeProduct,
-} = phonesSlice.actions;
+} = productsSlice.actions;
 
-export default phonesSlice.reducer;
+export default productsSlice.reducer;

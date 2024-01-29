@@ -138,7 +138,7 @@ export const ProductInfo: React.FC<Props> = ({ product, productSelected }) => {
                       <div
                         className={cn('product-info__color-gap', {
                           'product-info__color-gap--active':
-                          color === colorInPr,
+                          normalizedColor(color) === normalizedColor(colorInPr),
                         })}
                       >
                         <button

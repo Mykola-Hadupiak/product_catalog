@@ -12,7 +12,7 @@ export const Empty: React.FC<Props> = ({ title, buttnText, img }) => {
   return (
     <div className="empty">
       <img src={img} alt=" " className="empty__image" />
-      <h1 className="title">{title}</h1>
+      <h1 className="title empty__title">{title}</h1>
 
       <Link className="empty__button" to="/">
         <ButtonMain text={buttnText} />

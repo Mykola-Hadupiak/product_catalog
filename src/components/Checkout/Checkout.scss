@@ -11,6 +11,11 @@
 
   padding: 24px;
 
+  @include on-tablet {
+    flex-grow: 1;
+    margin-top: 32px;
+  }
+
   &__total {
     @extend %h1;
   }

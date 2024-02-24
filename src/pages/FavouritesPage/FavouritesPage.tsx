@@ -54,9 +54,11 @@ export const FavouritesPage = () => {
           </div>
         )}
 
-        <div className="favourites__content">
-          {productsToRender
-            .map(item => <ProductCard product={item} key={item.id} />)}
+        <div className="favourites__container">
+          <div className="favourites__content">
+            {productsToRender
+              .map(item => <ProductCard product={item} key={item.id} />)}
+          </div>
         </div>
       </div>
     </div>

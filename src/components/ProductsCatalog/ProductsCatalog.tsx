@@ -87,10 +87,12 @@ export const ProductsCatalog: React.FC<Props> = ({ products, name }) => {
             </div>
           </div>
 
-          <div className="products-catalog__content">
-            {phonesToRender.map(phone => (
-              <ProductCard product={phone} key={phone.id} />
-            ))}
+          <div className="products-catalog__container">
+            <div className="products-catalog__content">
+              {phonesToRender.map(phone => (
+                <ProductCard product={phone} key={phone.id} />
+              ))}
+            </div>
           </div>
 
           {perPage !== 'all' && (
@@ -108,10 +110,13 @@ export const ProductsCatalog: React.FC<Props> = ({ products, name }) => {
           <p className="products-catalog__found">
             {`${phonesWithQuery.length} results`}
           </p>
-          <div className="products-catalog__content">
-            {phonesWithQuery.map(phone => (
-              <ProductCard product={phone} key={phone.id} />
-            ))}
+
+          <div className="products-catalog__container">
+            <div className="products-catalog__content">
+              {phonesWithQuery.map(phone => (
+                <ProductCard product={phone} key={phone.id} />
+              ))}
+            </div>
           </div>
         </>
       )}

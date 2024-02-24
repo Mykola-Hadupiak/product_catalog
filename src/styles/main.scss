@@ -25,4 +25,9 @@ html {
   @extend %h1;
 
   color: $main-color;
+
+  &--home {
+    margin-top: 50px;
+    font-size: 38px;
+  }
 }

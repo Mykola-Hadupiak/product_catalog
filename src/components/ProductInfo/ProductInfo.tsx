@@ -123,6 +123,10 @@ export const ProductInfo: React.FC<Props> = ({ product, productSelected }) => {
               <div className="product-info__colors">
                 <p className="product-info__info-main--text">
                   Available colors
+
+                  <p className="product-info__id">
+                    {`ID: ${productSelected?.id}`}
+                  </p>
                 </p>
 
                 <div className="product-info__color-container">
@@ -213,7 +217,7 @@ export const ProductInfo: React.FC<Props> = ({ product, productSelected }) => {
               </div>
             </div>
 
-            <div>
+            <div className="product-info__id--container">
               <p className="product-info__id">
                 {`ID: ${productSelected?.id}`}
               </p>

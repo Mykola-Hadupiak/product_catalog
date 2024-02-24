@@ -15,5 +15,28 @@
   &__container {
     width: 100%;
     max-width: 1136px;
+
+
+    @media (max-width: 1199px) and (min-width: 750px) {
+      padding-inline: 24px;
+    }
+
+    @include on-tablet {
+      max-width: 750px;
+    }
+
+    @media (max-width: 750px) {
+      > *:not(.carousel) {
+        padding-inline: 24px;
+      }
+    }
+
+    @include on-mobile {
+      max-width: 600px;
+      min-width: 288px;
+      > *:not(.carousel) {
+        padding-inline: 16px;
+      }
+    }
   }
 }

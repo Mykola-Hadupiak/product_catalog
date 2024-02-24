@@ -9,7 +9,11 @@ const isActiveLink = ({ isActive }: { isActive: boolean }) => cn(
   },
 );
 
-export const Navigation = () => {
+type Props = {
+  handeMenuOpen?: () => void;
+};
+
+export const Navigation: React.FC<Props> = ({ handeMenuOpen }) => {
   return (
     <nav className="navigation">
       {navLinks.map(link => (
@@ -17,6 +21,7 @@ export const Navigation = () => {
           name={link}
           classNameFunc={isActiveLink}
           key={link}
+          handeMenuOpen={handeMenuOpen}
         />
       ))}
     </nav>

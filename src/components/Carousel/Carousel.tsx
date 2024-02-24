@@ -36,7 +36,7 @@ export const Carousel: React.FC = () => {
     <section className="carousel">
       <Swiper
         modules={[Autoplay, Pagination, Navigation]}
-        spaceBetween={10}
+        spaceBetween={20}
         slidesPerView={1}
         pagination={{
           clickable: true,
@@ -44,7 +44,7 @@ export const Carousel: React.FC = () => {
         navigation
         loop
         className="swiper-top"
-        allowTouchMove={false}
+        allowTouchMove
         autoplay={{
           delay: 5000,
           disableOnInteraction: false,

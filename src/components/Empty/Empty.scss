@@ -9,10 +9,22 @@
 
   &__image {
     width: 656px;
+
+    @include on-tablet {
+      width: 350px;
+    }
   }
 
   &__button {
     display: flex;
     width: 320px;
+  }
+
+  .title.empty__title {
+    @include on-tablet {
+      text-align: center;
+
+      font-size: 22px;
+    }
   }
 }

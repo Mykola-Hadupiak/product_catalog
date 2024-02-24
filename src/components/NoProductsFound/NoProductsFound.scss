@@ -16,9 +16,23 @@
 
   &__image {
     width: 656px;
+
+    @include on-tablet {
+      width: 350px;
+    }
   }
 
   &__message {
     color: $secondary-color;
+
+    @include on-tablet {
+      text-align: center;
+    }
+  }
+
+  .title.no-products-found__title {
+    @include on-tablet {
+      font-size: 22px;
+    }
   }
 }

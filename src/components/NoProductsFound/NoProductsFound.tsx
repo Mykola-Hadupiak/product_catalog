@@ -11,7 +11,7 @@ export const NoProductsFound = () => {
       <img src={image[0]} alt=" " className="no-products-found__image" />
 
       <div className="no-products-found__content">
-        <h1 className="title">No products found</h1>
+        <h1 className="title no-products-found__title">No products found</h1>
         <p className="no-products-found__message">
           {'We couldn\'t find any products matching your query'
             + '. Try another query.'}

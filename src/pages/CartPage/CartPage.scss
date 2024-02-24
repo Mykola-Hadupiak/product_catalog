@@ -21,6 +21,14 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
+
+    max-width: 752px;
+    flex: 1 0 752px;
+
+    @include on-tablet {
+      max-width: 704px;
+      flex: 1 1 704px;
+    }
   }
 
   &__title {

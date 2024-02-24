@@ -5,4 +5,9 @@
 
   @extend %upper-case;
   @include hover(color, $main-color);
+
+  @include on-mobile {
+    flex-direction: column;
+    padding-block: 0;
+  }
 }

@@ -19,6 +19,7 @@ export const Header = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [isVisible, setIsVisible] = useState(false);
   const [isFavVisible, setIsFavVisible] = useState(true);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [query, setQuery] = useState('');
   const { favourites, cart } = useAppSelector(state => state.products);
   const dispatch = useAppDispatch();
@@ -80,13 +81,24 @@ export const Header = () => {
 
   const isCart = normalizedPath === 'cart';
 
+  const handeMenuOpen = () => {
+    setIsMenuOpen(!isMenuOpen);
+    if (!isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  };
+
   return (
     <header className="header">
       <div className="header__left">
         <Logo />
 
         {!isCart && (
-          <Navigation />
+          <div className="header__navigation">
+            <Navigation />
+          </div>
         )}
       </div>
 
@@ -152,7 +164,74 @@ export const Header = () => {
             )}
           </div>
         </NavLink>
+
+        {!isMenuOpen && (
+          <button
+            type="button"
+            className="button--open-menu"
+            aria-label="open-menu"
+            onClick={handeMenuOpen}
+          >
+            <div className="icon icon-open-menu" />
+          </button>
+        )}
+
       </div>
+
+      {isMenuOpen && (
+        <aside className="menu">
+          <div className="header">
+            <Logo handeMenuOpen={handeMenuOpen} />
+
+            <button
+              type="button"
+              className="button--open-menu"
+              aria-label="open-menu"
+              onClick={handeMenuOpen}
+            >
+              <div className="icon icon-close" />
+            </button>
+          </div>
+
+          <div className="menu__navigation">
+            <Navigation handeMenuOpen={handeMenuOpen} />
+          </div>
+
+          <div className="menu__bottom">
+            <NavLink
+              to="/favourites"
+              className={({ isActive }) => cn('menu__favourites', {
+                'menu__favourites-is-active': isActive,
+              })}
+              onClick={handeMenuOpen}
+            >
+              <div className="icon icon-favourites menu__favourites-img">
+                {!!favourites.length && (
+                  <div className="menu__img-status">
+                    {favourites.length}
+                  </div>
+                )}
+              </div>
+            </NavLink>
+
+            <NavLink
+              to="/cart"
+              className={({ isActive }) => cn('menu__cart', {
+                'menu__cart-is-active': isActive,
+              })}
+              onClick={handeMenuOpen}
+            >
+              <div className="icon icon-cart menu__cart-img">
+                {!!cart.length && (
+                  <div className="menu__img-status">
+                    {cart.length}
+                  </div>
+                )}
+              </div>
+            </NavLink>
+          </div>
+        </aside>
+      )}
     </header>
   );
 };

@@ -14,29 +14,64 @@
     gap: 64px;
 
     margin-bottom: 82px;
+
+    @media (max-width: 700px) {
+      flex-direction: column;
+      width: 100%;
+      gap: 40px;
+    }
   }
 
   &__bottom {
     display: flex;
     gap: 64px;
+
+    @include on-tablet {
+      flex-direction: column;
+      width: 100%;
+    }
   }
 
   &__images {
     display: flex;
     min-width: 560px;
     gap: 16px;
+
+    @include on-tablet {
+      min-width: 350px;
+    }
+
+    @media (max-width: 700px) {
+      flex-direction: column-reverse;
+      width: 100%;
+      align-items: center;
+      gap: 32px;
+    }
   }
 
   &__small-imgs {
     display: flex;
     flex-direction: column;
     gap: 16px;
+
+    @include on-tablet {
+      gap: 8px;
+    }
+
+    @media (max-width: 700px) {
+      flex-direction: row;
+    }
   }
 
   &__button-img {
     background-color: $white-color;
     width: 80px;
     height: 80px;
+
+    @include on-tablet {
+      width: 56px;
+      height: 56px;
+    }
   }
 
   &__small-img {
@@ -47,6 +82,12 @@
 
     @include border-default;
     @include hover(border-color, $icons-color);
+
+    @include on-tablet {
+      width: 56px;
+      height: 56px;
+      padding: 0;
+    }
 
     &--active {
       border-color: $main-color;
@@ -60,6 +101,12 @@
     width: 422px;
     object-fit: contain;
     margin: 11px;
+
+    @include on-tablet {
+      width: 287px;
+      height: 287px;
+      padding: 0;
+    }
   }
 
   &__info {
@@ -70,6 +117,10 @@
 
   &__info-main {
     min-width: 320px;
+
+    @include on-tablet {
+      min-width: 100%;
+    }
   }
 
   &__colors {
@@ -185,12 +236,23 @@
     @extend %text-characteristics;
 
     color: $secondary-color;
+
+    @include on-tablet {
+      display: flex;
+      justify-content: space-between;
+    }
   }
 
   &__id {
     @extend %body-text;
 
     color: $icons-color;
+
+    &--container {
+      @include on-tablet {
+        display: none;
+      }
+    }
   }
 
   &__price {
@@ -237,6 +299,10 @@
 .about {
   max-width: 560px;
 
+  @include on-tablet {
+    max-width: 100%;
+  }
+
   &__title {
     @extend %h2;
 
@@ -274,6 +340,10 @@
 .tech-specs {
   flex-grow: 1;
   max-width: 512px;
+
+  @include on-tablet {
+    max-width: 100%;
+  }
 
   &__title {
     @extend %h2;

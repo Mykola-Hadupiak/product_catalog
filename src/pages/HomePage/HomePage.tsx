@@ -29,36 +29,41 @@ export const HomePage: React.FC = () => {
   }, [products]);
 
   return (
-    <div className="home-page">
-      <Carousel />
+    <>
+      <h1 className="title title--home">Welcome to Nice Gadgets store!</h1>
 
-      {loading && !error && (
-        <div className="home-page__loader">
-          <Loader />
-        </div>
-      )}
+      <div className="home-page">
+        <Carousel />
 
-      {!loading && !error && products && (
-        <section className="hot-prices">
-          <ProductSlider title="Hot prices" products={hotPrices} />
+        {loading && !error && (
+          <div className="home-page__loader">
+            <Loader />
+          </div>
+        )}
+
+        {!loading && !error && products && (
+          <section className="hot-prices">
+            <ProductSlider title="Hot prices" products={hotPrices} />
+          </section>
+        )}
+
+        <section className="shop-by-category">
+          <Categories />
         </section>
-      )}
 
-      <section className="shop-by-category">
-        <Categories />
-      </section>
+        {loading && !error && (
+          <div className="home-page__loader">
+            <Loader />
+          </div>
+        )}
 
-      {loading && !error && (
-        <div className="home-page__loader">
-          <Loader />
-        </div>
-      )}
+        {!loading && !error && products && (
+          <section className="brand-new-models">
+            <ProductSlider title="Brand new models" products={brandNew} />
+          </section>
+        )}
+      </div>
+    </>
 
-      {!loading && !error && products && (
-        <section className="brand-new-models">
-          <ProductSlider title="Brand new models" products={brandNew} />
-        </section>
-      )}
-    </div>
   );
 };

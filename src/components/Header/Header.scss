@@ -7,10 +7,28 @@
   box-shadow: 0 1px 0 0 $elements-color;
   padding-left: 24px;
 
+  @media (max-width: 780px) {
+    align-items: center;
+  }
+
+  @include on-tablet {
+    padding-left: 16px;
+  }
+
+  &__navigation {
+    @media (max-width: 780px) {
+      display: none;
+    }
+  }
+
   &__left {
     display: flex;
     align-items: center;
     gap: 64px;
+
+    @include on-tablet {
+      gap: 32px;
+    }
   }
 
   &__right {
@@ -43,6 +61,10 @@
     border: none;
     outline: none;
 
+    @include on-tablet {
+      padding: 16px 20px;
+    }
+
     @extend %button;
 
     color: $main-color;
@@ -70,6 +92,14 @@
 
     @include hover(background-color, $bg-and-hover-color);
 
+    @media (max-width: 780px) {
+      display: none;
+    }
+
+    @include on-tablet {
+      padding: 17px;
+    }
+
     &-is-active {
       &::after {
        @extend %active-line;
@@ -87,6 +117,120 @@
     box-shadow: -1px 0 0 0 $elements-color;
 
     @include hover(background-color, $bg-and-hover-color);
+
+    @media (max-width: 780px) {
+      display: none;
+    }
+
+    @include on-tablet {
+      padding: 17px;
+    }
+
+    &-is-active {
+      &::after {
+       @extend %active-line;
+      }
+    }
+
+    &-img {
+      position: relative;
+    }
+  }
+
+  &__img-status {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    top: 0;
+    right: 0;
+
+    @extend %image-status;
+
+    transform: translate(50%, -50%);
+  }
+}
+
+.button--open-menu {
+  display: none;
+
+  padding: 17px;
+  background-color: inherit;
+
+  border-left: 1px solid $elements-color;
+
+  @media (max-width: 780px) {
+    display: block;
+  }
+}
+
+.menu {
+  position: fixed;
+  background-color: $white-color;
+
+  display: flex;
+  flex-direction: column;
+
+  inset: 0;
+  z-index: 999;
+
+  &__navigation {
+    display: flex;
+    justify-content: center;
+
+    margin-top: 24px;
+    flex-grow: 1;
+  }
+
+  &__bottom {
+    display: flex;
+
+    height: 64px;
+
+    border-top: 1px solid $elements-color;
+  }
+
+  &__favourites {
+    flex-grow: 1;
+    position: relative;
+    padding: 24px;
+    box-shadow: -1px 0 0 0 $elements-color;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @include hover(background-color, $bg-and-hover-color);
+
+    @include on-tablet {
+      padding: 17px;
+    }
+
+    &-is-active {
+      &::after {
+       @extend %active-line;
+      }
+    }
+
+    &-img {
+      position: relative;
+    }
+  }
+
+  &__cart {
+    position: relative;
+    flex-grow: 1;
+    padding: 24px;
+    box-shadow: -1px 0 0 0 $elements-color;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @include hover(background-color, $bg-and-hover-color);
+
+    @include on-tablet {
+      padding: 17px;
+    }
 
     &-is-active {
       &::after {

@@ -79,47 +79,49 @@ export const Card: React.FC<Props> = ({ card }) => {
         </Link>
       </div>
 
-      <div className="card__buttons">
-        <button
-          className={cn('card__button', {
-            'card__button--disabled': isDeleteDisabled,
-          })}
-          type="button"
-          aria-label="minus"
-          disabled={isDeleteDisabled}
-          onClick={handleRemoveItem}
-        >
-          <div
-            className={cn('icon', {
-              'icon-minus-main': isDeleteDisabled,
-              'icon-minus': !isDeleteDisabled,
+      <div className="card__right">
+        <div className="card__buttons">
+          <button
+            className={cn('card__button', {
+              'card__button--disabled': isDeleteDisabled,
             })}
-          />
-        </button>
+            type="button"
+            aria-label="minus"
+            disabled={isDeleteDisabled}
+            onClick={handleRemoveItem}
+          >
+            <div
+              className={cn('icon', {
+                'icon-minus-main': isDeleteDisabled,
+                'icon-minus': !isDeleteDisabled,
+              })}
+            />
+          </button>
 
-        <p className="card__amount">
-          {amountOfProduct}
-        </p>
+          <p className="card__amount">
+            {amountOfProduct}
+          </p>
 
-        <button
-          className={cn('card__button', {
-            'card__button--disabled': isAddDisabled,
-          })}
-          type="button"
-          aria-label="plus"
-          onClick={handleAddItem}
-          disabled={isAddDisabled}
-        >
-          <div
-            className={cn('icon', {
-              'icon-plus-main': isAddDisabled,
-              'icon-plus': !isAddDisabled,
+          <button
+            className={cn('card__button', {
+              'card__button--disabled': isAddDisabled,
             })}
-          />
-        </button>
+            type="button"
+            aria-label="plus"
+            onClick={handleAddItem}
+            disabled={isAddDisabled}
+          >
+            <div
+              className={cn('icon', {
+                'icon-plus-main': isAddDisabled,
+                'icon-plus': !isAddDisabled,
+              })}
+            />
+          </button>
+        </div>
+        <p className="card__price">{`$${price}`}</p>
       </div>
 
-      <p className="card__price">{`$${price}`}</p>
     </div>
   );
 };

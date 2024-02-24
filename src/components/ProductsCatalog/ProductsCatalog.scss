@@ -1,7 +1,8 @@
-@import "../../styles/main";
+ @import "../../styles/main";
 
 .products-catalog {
   --bottom-margin: 40px;
+  --grid-columns: 4;
 
   padding-bottom: 80px;
 
@@ -31,12 +32,30 @@
     gap: 16px;
   }
 
-  &__content {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--bottom-margin) 16px;
+  &__container {
+    @include on-tablet {
+      display: flex;
 
+      justify-content: center;
+    }
+  }
+
+  &__content {
     margin-bottom: var(--bottom-margin);
+
+    display: grid;
+    grid-template-columns: repeat(var(--grid-columns), max-content);
+    gap: 40px 16px;
+
+    @include on-tablet {
+      --grid-columns: 2;
+
+      gap: 40px 30px;
+    }
+
+    @include on-mobile {
+      --grid-columns: 1;
+    }
   }
 
   &__pagination {

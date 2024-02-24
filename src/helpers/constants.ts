@@ -14,7 +14,7 @@ export const footerLinks = [
 ];
 
 export const categoryImages = [
-  require('../assets/categories/category-phones.png'),
+  require('../assets/categories/category-phones2.png'),
   require('../assets/categories/category-tablets.png'),
   require('../assets/categories/category-accessories.png'),
 ];

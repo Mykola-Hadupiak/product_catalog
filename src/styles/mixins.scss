@@ -6,6 +6,18 @@
   }
 }
 
+@mixin on-tablet {
+  @media (max-width: 1199px) {
+    @content;
+  }
+}
+
+@mixin on-mobile {
+  @media (max-width: 639px) {
+    @content;
+  }
+}
+
 @mixin flex-center {
   display: flex;
   justify-content: center;

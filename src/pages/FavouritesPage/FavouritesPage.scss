@@ -1,6 +1,8 @@
 @import "../../styles/main";
 
 .favourites {
+  --grid-columns: 4;
+
   &__top {
     margin-bottom: 40px;
   }
@@ -19,12 +21,29 @@
     }
   }
 
-  &__content {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-    row-gap: 40px;
+  &__container {
+    @include on-tablet {
+      display: flex;
 
+      justify-content: center;
+    }
+  }
+
+  &__content {
     margin-bottom: 80px;
+
+    display: grid;
+    grid-template-columns: repeat(var(--grid-columns), max-content);
+    gap: 40px 16px;
+
+    @include on-tablet {
+      --grid-columns: 2;
+
+      gap: 40px 30px;
+    }
+
+    @include on-mobile {
+      --grid-columns: 1;
+    }
   }
 }

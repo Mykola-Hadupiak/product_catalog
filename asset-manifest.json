@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "./static/css/main.00df5029.css",
-    "main.js": "./static/js/main.cab01cd8.js",
+    "main.css": "./static/css/main.c6086bdf.css",
+    "main.js": "./static/js/main.a24ceb2b.js",
     "static/media/category-tablets.png": "./static/media/category-tablets.51782e18205a1ca01ce8.png",
-    "static/media/category-phones.png": "./static/media/category-phones.af93d992917380dfe206.png",
     "static/media/banner-phones.png": "./static/media/banner-phones.b4eeda8bd82b712057a2.png",
+    "static/media/category-phones2.png": "./static/media/category-phones2.a797c48cf356a525e43c.png",
     "static/media/category-accessories.png": "./static/media/category-accessories.e47d6d6df68a6548e82b.png",
     "static/media/banner-tablets.png": "./static/media/banner-tablets.a962057c1043a08f7737.png",
     "static/media/not-found.png": "./static/media/not-found.4ab497048732db88234d.png",
@@ -20,12 +20,12 @@
     "static/media/went-wrong.png": "./static/media/went-wrong.aad92c5ed0d772737524.png",
     "static/media/cart.svg": "./static/media/cart.1962e42406793fa66f0d.svg",
     "static/media/favourites.svg": "./static/media/favourites.dbd19c030c984812b400.svg",
-    "static/media/logo.svg": "./static/media/logo.c94176926904d965da98.svg",
     "static/media/home.svg": "./static/media/home.d4c29e4f137b3a79235a.svg",
     "static/media/search.svg": "./static/media/search.eb670dd9ac01a47e6e00.svg",
     "static/media/favourites-like.svg": "./static/media/favourites-like.d554a185325e4fb06092.svg",
     "static/media/close-main.svg": "./static/media/close-main.d99189a57063cb02e093.svg",
     "static/media/close.svg": "./static/media/close.3ea864f59fecb8596c4b.svg",
+    "static/media/burger-menu.svg": "./static/media/burger-menu.744ac0b04d84e4feeeb5.svg",
     "static/media/plus-main.svg": "./static/media/plus-main.f6ec325e9e9c09de5d9d.svg",
     "static/media/plus.svg": "./static/media/plus.dea157243cc9d361ac05.svg",
     "static/media/vecrot-right-main.svg": "./static/media/vecrot-right-main.70f42d77d4895623e71b.svg",
@@ -37,11 +37,11 @@
     "static/media/minus-main.svg": "./static/media/minus-main.cce4862297a181fdf808.svg",
     "static/media/minus.svg": "./static/media/minus.cecb4be39afa7b933ec1.svg",
     "index.html": "./index.html",
-    "main.00df5029.css.map": "./static/css/main.00df5029.css.map",
-    "main.cab01cd8.js.map": "./static/js/main.cab01cd8.js.map"
+    "main.c6086bdf.css.map": "./static/css/main.c6086bdf.css.map",
+    "main.a24ceb2b.js.map": "./static/js/main.a24ceb2b.js.map"
   },
   "entrypoints": [
-    "static/css/main.00df5029.css",
-    "static/js/main.cab01cd8.js"
+    "static/css/main.c6086bdf.css",
+    "static/js/main.a24ceb2b.js"
   ]
 }

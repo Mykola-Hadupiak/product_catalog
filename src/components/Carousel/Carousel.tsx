@@ -58,7 +58,9 @@ export const Carousel: React.FC = () => {
               <img
                 src={image}
                 alt={`Image ${index + 1}`}
-                className="swiper__image image-top"
+                className={cn('swiper__image', 'image-top', `
+                  image-top--${index + 1}
+                `)}
               />
             </Link>
           </SwiperSlide>

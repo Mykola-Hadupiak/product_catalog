@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import cn from 'classnames';
 import { Product } from '../../types/Product';
 import { ProductCard } from '../ProductCard';
@@ -11,12 +11,29 @@ type Props = {
 
 export const ProductSlider: React.FC<Props> = ({ title, products }) => {
   const [carouselPosition, setCarouselPosition] = useState(0);
-  const cardsPerPage = 4;
+  const [cardsPerPage, setCardsPerPage] = useState(4);
   const cardWidth = 272;
   const gapPixels = 16;
 
+  useEffect(() => {
+    const updateCardsPerPage = () => {
+      if (window.innerWidth <= 639) {
+        setCardsPerPage(1);
+      } else if (window.innerWidth <= 1199) {
+        setCardsPerPage(2);
+      } else {
+        setCardsPerPage(4);
+      }
+    };
+
+    updateCardsPerPage();
+    window.addEventListener('resize', updateCardsPerPage);
+
+    return () => window.removeEventListener('resize', updateCardsPerPage);
+  }, []);
+
   const moveCarousel = (direction: 'left' | 'right') => {
-    const cardsToMove = 4;
+    const cardsToMove = cardsPerPage;
 
     let newPosition;
 

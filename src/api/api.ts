@@ -27,15 +27,41 @@ export const getAccessories = async () => {
       .filter(product => product.category === 'accessories'));
 };
 
-export const getHotPriceProducts = (pcoducts: Product[]) => {
-  return [...pcoducts]
-    .sort((pr1, pr2) => ((1 - (pr1.fullPrice / pr1.price)) * 100)
-      - (1 - (pr2.fullPrice / pr2.price)) * 100).slice(0, 16);
+export const getHotPriceProducts = (products: Product[]): Product[] => {
+  const categoryMap: { [category: string]: Product[] } = {};
+
+  products.forEach(product => {
+    if (!categoryMap[product.category]) {
+      categoryMap[product.category] = [];
+    }
+
+    categoryMap[product.category].push(product);
+  });
+
+  const selectedProducts: Product[] = [];
+
+  // eslint-disable-next-line no-restricted-syntax, guard-for-in
+  for (const category in categoryMap) {
+    const categoryProducts = categoryMap[category];
+    const slicedProducts = categoryProducts.slice(0, 4);
+
+    selectedProducts.push(...slicedProducts);
+  }
+
+  for (let i = selectedProducts.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+
+    [selectedProducts[i], selectedProducts[j]] = [selectedProducts[j], selectedProducts[i]];
+  }
+
+  return selectedProducts.slice(0, 16);
 };
 
-export const getBrandNewProducts = (products: Product[]) => {
-  return [...products]
-    .sort((pr1, pr2) => pr2.price - pr1.price).slice(0, 16);
+export const getBrandNewProducts = (products: Product[]): Product[] => {
+  const filteredProducts = products.filter(product => product.itemId.includes('14'));
+  const sortedProducts = filteredProducts.sort((pr1, pr2) => pr2.price - pr1.price);
+
+  return sortedProducts.slice(0, 16);
 };
 
 export const getProductsInfo = (id: string, category: string) => {

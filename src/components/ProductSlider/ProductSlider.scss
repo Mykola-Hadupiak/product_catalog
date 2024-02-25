@@ -11,6 +11,10 @@
     @extend %h1;
 
     margin-bottom: 24px;
+
+    @include on-tablet {
+      gap: 16px;
+    }
   }
 
   &__buttons {
@@ -22,5 +26,9 @@
   &__content {
     display: flex;
     gap: 16px;
+
+    @include on-tablet {
+      max-width: 560px;
+    }
   }
 }

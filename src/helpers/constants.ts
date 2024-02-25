@@ -44,7 +44,7 @@ export const wentWrong = [
 ][0];
 
 export const carouselImages = [
-  require('../assets/banners/banner-phones.png'),
+  require('../assets/banners/banner-phones2.png'),
   require('../assets/banners/banner-tablets.png'),
   require('../assets/banners/banner-accessories.png'),
 ];
